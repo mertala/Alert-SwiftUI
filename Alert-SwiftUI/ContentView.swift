@@ -7,15 +7,22 @@
 //
 
 import SwiftUI
-
 struct ContentView: View {
-    var body: some View {
-        Text("Hello World")
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    @State private var showingAlert = false
+var body: some View {
+       Button(action: {
+            self.showingAlert = true
+        }) {
+            Text("OK")
+               .frame(minWidth: 0, maxWidth: .infinity)
+               .padding()
+               .foregroundColor(.white)
+               .background(Color.green)
+               .frame(width: 300, height: 60)
+               .cornerRadius(30.0)
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("UYARI"), message: Text("Başarısız Giriş"), dismissButton: .default(Text("Tekrar")))
+        }
     }
 }
